@@ -1,15 +1,29 @@
 class Solution {
 public:
     int thirdMax(vector<int>& nums) {
-        set<int> st(nums.begin(), nums.end());
-        vector<int> v(st.begin(), st.end());
-        sort(v.begin(), v.end());
+        long long first = LLONG_MIN;
+        long long second = LLONG_MIN;
+        long long third = LLONG_MIN;
 
-        int n=v.size();
-        if(n>=3){
-            return v[n-3];
-        }else{
-            return v[n-1];
+        for (int x : nums) {
+            // skip duplicates
+            if (x == first || x == second || x == third) continue;
+
+            if (x > first) {
+                third = second;
+                second = first;
+                first = x;
+            }
+            else if (x > second) {
+                third = second;
+                second = x;
+            }
+            else if (x > third) {
+                third = x;
+            }
         }
+
+        // if third doesn't exist, return max
+        return (third == LLONG_MIN) ? (int)first : (int)third;
     }
 };
