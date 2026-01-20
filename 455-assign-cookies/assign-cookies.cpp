@@ -9,8 +9,10 @@ public:
             if(s[j]>=g[i]){
                 flag++;
                 i++;
+                j++;
+            }else{
+                j++;
             }
-            j++;
         }
         return flag;
     }
