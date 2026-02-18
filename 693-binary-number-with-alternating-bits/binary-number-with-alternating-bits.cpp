@@ -1,16 +1,18 @@
 class Solution {
 public:
     bool hasAlternatingBits(int n) {
-        string binary="";
-        while(n>0){
-            binary=char('0'+(n%2))+binary;
-            n/=2;
+        int prev = n & 1;
+        n >>= 1;
+
+        while (n > 0) {
+            int curr = n & 1;
+
+            if (curr == prev) return false;
+
+            prev = curr;
+            n >>= 1;
         }
-        for(int i=0;i<binary.length()-1;i++){
-            if(binary[i]==binary[i+1]){
-                return false;
-            }
-        }
+
         return true;
     }
 };
