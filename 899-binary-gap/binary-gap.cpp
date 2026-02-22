@@ -10,6 +10,7 @@ public:
                 maxGap = max(maxGap, gap);
                 gap = 0;
             } else
+
                 gap++;
             n >>= 1;
         }
